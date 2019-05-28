@@ -1,20 +1,21 @@
 var faker = require('faker');
 
-var theDate = new Date('2019-1-1');
+const theFirstDate = '2019-1-1'
 
 function generateSummary() {
-    var summary = [];
+    let theDate = new Date(theFirstDate);
+    let summary = [];
 
-    for (var ii = 1;  ii <= 365; ii++) {
+    for (let ii = 1;  ii <= 365; ii++) {
         let myDate = theDate.toLocaleDateString();
 
-        var id = ii;
-        var date =  myDate;
-        var prod = faker.random.number( { min: 0, max: 5 } );
-        var uat = faker.random.number( { min: 0, max: 10 } );
-        var qa = faker.random.number( { min: 0, max: 15 } );
-        var test = faker.random.number( { min: 0, max: 20 } );
-        var dev = faker.random.number( { min: 0, max: 25 } );
+        let id = ii;
+        let date =  myDate;
+        let prod = faker.random.number( { min: 0, max: 5 } );
+        let uat = faker.random.number( { min: 0, max: 10 } );
+        let qa = faker.random.number( { min: 0, max: 15 } );
+        let test = faker.random.number( { min: 0, max: 20 } );
+        let dev = faker.random.number( { min: 0, max: 25 } );
 
         summary.push({
                 "id": ii,
@@ -29,32 +30,65 @@ function generateSummary() {
         theDate.setDate(theDate.getDate() + 1);
     }
 
-    console.log(summary);
     return { "summary": summary };
 }
 
 function generateDetail() {
-    var detail = [];
+    let theDate = new Date(theFirstDate);
+    let detail = [];
 
-    for (var ii = 4;  ii < 9; ii++) {
-        var id = ii;
-        var date = ii;
-        var prod = faker.random.number( { min: 0, max: 5 } );
-        var uat = faker.random.number( { min: 0, max: 10 } );
-        var qa = faker.random.number( { min: 0, max: 15 } );
-        var test = faker.random.number( { min: 0, max: 20 } );
-        var dev = faker.random.number( { min: 0, max: 25 } );
+    for (let ii = 1;  ii <= 365; ii++) {
+        let myDate = theDate.toLocaleDateString();
 
+        let id = ii;
+
+        let start_date = myDate;
+        let end_date = myDate;
+
+        let server_name = "njunvfake" + ii;
+        let server_type = "virtual";
+        let server_ips = [ "192.168.103.44" ]
+        let server_os = "RHEL 5.6";
+        let server_owners = { "it": [ "Abby Normal", "Farley Demented" ],
+                              "biz": [ "Gravely Disturbed", "Nether Satisfied" ] };
+        let server_zone = "corporate";
+        let server_site = "union";
+        let server_apps = [ { "AppLate": [ "Ned Reqs", "Noa Idea"] },
+                            { "Appache": [ "Crash A. Lot"] } ]
+
+        let server = { "name": server_name,
+                       "type": server_type,
+                       "ips": server_ips,
+                       "os": server_os,
+                       "owners": server_owners,
+                       "zone": server_zone,
+                       "site": server_site,
+                       "server_apps": server_apps
+                     }
+
+        let apply_os_patch = "RHEL 5.7";
+        let apply_os_patches = [ { "server": server,
+                                   "apply_os_patch": apply_os_patch } ];
+
+        let prod_patches = apply_os_patches;
+        let uat_patches = apply_os_patches;
+        let qa_patches = apply_os_patches;
+        let test_patches = apply_os_patches;
+        let dev_patches = apply_os_patches;
+
+        let patches = { "prod": prod_patches,
+                        "uat": uat_patches,
+                        "qa": qa_patches,
+                        "test": test_patches,
+                        "dev": dev_patches };
         detail.push({
-                "id": ii,
-                "date": date,
-                "prod": prod,
-                "uat": uat,
-                "qa": qa,
-                "test": test,
-                "dev": dev
+                "id": id,
+                "start_date": start_date,
+                "end_date": end_date,
+                "patches": patches
             }
         )
+        theDate.setDate(theDate.getDate() + 1);
     }
 
     return { "detail": detail };
