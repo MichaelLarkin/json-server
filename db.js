@@ -1,3 +1,4 @@
+var dateFns = require('date-fns');
 var faker = require('faker');
 
 const theFirstDate = '2019-1-1'
@@ -7,7 +8,10 @@ function generateSummary() {
     let summary = [];
 
     for (let ii = 1;  ii <= 365; ii++) {
-        let myDate = theDate.toLocaleDateString();
+
+        /* let myDate = theDate.toLocaleDateString(); */
+        let myDate = dateFns.format(theDate, 'MM/DD/YYYY');
+        console.log(myDate);
 
         let id = ii;
         let date =  myDate;
