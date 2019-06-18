@@ -7,13 +7,10 @@ function generateSummary() {
     let theDate = new Date(theFirstDate);
     let summary = [];
 
-    for (let ii = 1;  ii <= 365; ii++) {
+    for (let ii = 0;  ii < 365; ii++) {
 
         /* let myDate = theDate.toLocaleDateString(); */
         let myDate = dateFns.format(theDate, 'MM/DD/YYYY');
-        console.log(myDate);
-
-        let id = ii;
         let date =  myDate;
         let prod = faker.random.number( { min: 0, max: 5 } );
         let uat = faker.random.number( { min: 0, max: 10 } );
@@ -41,10 +38,9 @@ function generateDetail() {
     let theDate = new Date(theFirstDate);
     let detail = [];
 
-    for (let ii = 1;  ii <= 365; ii++) {
-        let myDate = theDate.toLocaleDateString();
+    for (let ii = 0;  ii < 365; ii++) {
 
-        let id = ii;
+        let myDate = theDate.toLocaleDateString();
 
         let start_date = myDate;
         let end_date = myDate;
@@ -86,7 +82,7 @@ function generateDetail() {
                         "test": test_patches,
                         "dev": dev_patches };
         detail.push({
-                "id": id,
+                "id": ii,
                 "start_date": start_date,
                 "end_date": end_date,
                 "patches": patches
@@ -105,7 +101,6 @@ function generateData() {
                  "detail": data2 };
 
     return data;
-
 }
 
 
