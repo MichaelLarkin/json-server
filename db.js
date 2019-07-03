@@ -31,7 +31,7 @@ function generateSummary() {
         theDate.setDate(theDate.getDate() + 1);
     }
 
-    return { "summary": summary };
+    return { summary };
 }
 
 function generateDetail() {
@@ -64,11 +64,14 @@ function generateDetail() {
                        "zone": server_zone,
                        "site": server_site,
                        "server_apps": server_apps
-                     }
+                      }
+
 
         let apply_os_patch = "RHEL 5.7";
-        let apply_os_patches = [ { "server": server,
-                                   "apply_os_patch": apply_os_patch } ];
+        let apply_os_patches = [
+                                    { "server": server,
+                                      "apply_os_patch": apply_os_patch }
+                               ];
 
         let prod_patches = apply_os_patches;
         let uat_patches = apply_os_patches;
@@ -91,14 +94,14 @@ function generateDetail() {
         theDate.setDate(theDate.getDate() + 1);
     }
 
-    return { "detail": detail };
+    return { detail };
 }
 
 function generateData() {
     var data1 = generateSummary();
     var data2 = generateDetail();
-    var data = { "summary": data1,
-                 "detail": data2 };
+    var data = { data1,
+                 data2 };
 
     return data;
 }
